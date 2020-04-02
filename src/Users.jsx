@@ -171,7 +171,6 @@ function Users() {
             });
         } else {
             // Notice! This does not submit changes to the server!
-            alert("Change not submitted to server. (Just not part of this example.)")
             let newUserList = [...userList];
             let userIndex = userList.findIndex((user) => user.id === currentUser.id);
 
@@ -191,7 +190,6 @@ function Users() {
     }
 
     let deleteClicked = (id) => {
-        alert("Important: Not deleted on the server.  (Not part of this example.)")
         setUserList(userList.filter((item) => item.id !== id));
         cancelClicked();
     }
