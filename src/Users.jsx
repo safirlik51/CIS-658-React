@@ -1,8 +1,7 @@
-// Configure the edit button to populate the form with the desired User data and process the update.
-
 import React from 'react';
 
 const apiURL = 'http://localhost:5151'
+//const apiURLTest = 'http://localhost:4000'
 
 function UserForm({ user, updateUser, formMode, submitCallback, cancelCallback }) {
 
@@ -27,7 +26,6 @@ function UserForm({ user, updateUser, formMode, submitCallback, cancelCallback }
     }
 
     let formSubmitted = (event) => {
-        // Prevent the browser from re-loading the page.
         event.preventDefault();
         submitCallback();
     };
@@ -58,7 +56,6 @@ function UserForm({ user, updateUser, formMode, submitCallback, cancelCallback }
 }
 
 function UserListItem({ user, onChange, onRemoval }) {
-    // Notice that the buttons currently don't do anything when clicked.
     return (
         <tr>
             <td className="col-md-3">{user.fname}</td>
@@ -121,12 +118,7 @@ function Users() {
         }).then(data => {
             console.log("And the JSON");
             console.log(data);
-
             setUserList(data);
-
-            // Use this instead of the line above if you want to see what happens
-            // if the server is slow.
-            //setTimeout(() => setUserList(data), 5000);
         });
     };
 
@@ -160,8 +152,6 @@ function Users() {
             postNewUser(currentUser).then(data => {
                 console.log("Received data");
                 console.log(data);
-
-                // The presence of a message key indicates there was an error.
                 if (!data.message) {
                     currentUser.id = data.id;
                     setUserList([...userList, currentUser]);
@@ -170,7 +160,6 @@ function Users() {
                 }
             });
         } else {
-            // Notice! This does not submit changes to the server!
             let newUserList = [...userList];
             let userIndex = userList.findIndex((user) => user.id === currentUser.id);
 
